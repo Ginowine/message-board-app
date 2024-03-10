@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import PostMessageForm from './components/PostMessageForm';
+import MessageList from './components/MessageList';
+//import { ethers } from 'ethers';
+const ethers = require("ethers");
 
-function App() {
+
+const App = () => {
+  // State to manage the provider (initially set to null)
+  const [provider, setProvider] = useState(null);
+
+  // Function to handle wallet connection
+  const connectWallet = async () => {
+    try {
+      if (window.ethereum) {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        console.log("Connected Accounts:", accounts);
+        //const newProvider = new ethers.providers.Web3Provider(window.ethereum);
+        const newProvider = new ethers.BrowserProvider(window.ethereum);
+        setProvider(newProvider);
+      } else {
+        console.error("No Ethereum provider found. Please install a browser extension like MetaMask.");
+      }
+    } catch (error) {
+      console.error("Error connecting wallet:", error);
+    }
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Message Board</h1>
+      <button onClick={connectWallet}>Connect Wallet</button>
+
+      {/* Conditionally render PostMessageForm based on provider */}
+      {provider && (
+        <PostMessageForm provider={provider} />
+      )}
+
+      <MessageList provider={provider} />
     </div>
   );
-}
+};
 
 export default App;
