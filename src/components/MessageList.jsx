@@ -1,53 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
+import contractInfo from '../contractInfo.json';
 
-const contractAddress = '0xddbf51c2717ef7b5ded6b8a7a1238480ccff83b9';
-const abi = [
-    {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "message",
-                "type": "string"
-            }
-        ],
-        "name": "postMessage",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getMessages",
-        "outputs": [
-            {
-                "internalType": "string[]",
-                "name": "",
-                "type": "string[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    }
-];
+const contractAddress = contractInfo.address;
+const abi = contractInfo.abi;
+
 const MessageList = ({ provider }) => {
     const [messages, setMessages] = useState([]);
 

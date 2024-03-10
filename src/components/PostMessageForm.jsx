@@ -1,57 +1,13 @@
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
-
-const contractAddress = '0xddbf51c2717ef7b5ded6b8a7a1238480ccff83b9';
-const abi = [
-    {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "message",
-                "type": "string"
-            }
-        ],
-        "name": "postMessage",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getMessages",
-        "outputs": [
-            {
-                "internalType": "string[]",
-                "name": "",
-                "type": "string[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "messages",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    }
-];
+import '../processing-animation.css';
+import contractInfo from '../contractInfo.json';
 
 const PostMessageForm = ({ provider }) => {
     const [message, setMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const contractAddress = contractInfo.address;
+    const abi = contractInfo.abi;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -63,6 +19,7 @@ const PostMessageForm = ({ provider }) => {
         }
 
         if (!message) return; // Check if message is empty
+        setIsLoading(true)
 
         try {
             const signer = await provider.getSigner();
@@ -75,6 +32,8 @@ const PostMessageForm = ({ provider }) => {
             setMessage(''); // Clear the message input
         } catch (error) {
             console.error("Error posting message:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -86,9 +45,10 @@ const PostMessageForm = ({ provider }) => {
                         Message:
                         <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
                     </label>
-                    <button type="submit" disabled={!message}>
-                        Post Message
+                    <button type="submit" disabled={isLoading}>
+                        {isLoading ? 'Posting...' : 'Post Message'}
                     </button>
+                    {isLoading && <p className="processing-text">Processing transaction...</p>}
                 </form>
             ) : (
                 <div>
