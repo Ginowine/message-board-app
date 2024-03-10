@@ -68,6 +68,8 @@ const MessageList = ({ provider }) => {
         };
 
         fetchMessages();
+        const intervalId = setInterval(fetchMessages, 5000);
+        return () => clearInterval(intervalId);
     }, [provider]);
 
     return (
