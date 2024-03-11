@@ -1,4 +1,4 @@
-# Decentralized Message Board
+# Decentralized Message Board User Interface
 
 This project provides a basic decentralized message board application built using React and the Ethereum blockchain. Users can connect their wallets, post messages, and view messages submitted by others.
 
@@ -23,20 +23,15 @@ cd message-board-app`
 
 Bash
 
-npm install
-``` (or `yarn install` if using yarn)
-
-Configure Smart Contract:
+`npm install`
 
 ### Install Dependencies:
 
-npm install
-``` (or `yarn install` if using yarn)
+`npm install`
 
 ### Run the Application
 
-npm start
-``` (or `yarn start`)
+`npm start`
 
 This will start the development server and open the application in your default browser (usually http://localhost:3000).
 
@@ -50,9 +45,11 @@ This application allows you to:
 
 ### Note:
 
-This is a basic example and can be extended with features like:
+This is a basic example and should not be used in production without further security audits and testing.
+This project can be extended with features like:
 
 - Upvoting or downvoting messages.
 - Decentralized storage for message content (e.g., using IPFS).
 
-Feel free to explore and customize the project to fit your specific needs!
+### Contributing
+This project is open source and I welcome contributions. Feel free to submit pull requests with improvements or additional features.
