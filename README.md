@@ -27,10 +27,6 @@ Bash
 
 `npm install`
 
-### Install Dependencies:
-
-`npm install`
-
 ### Run the Application
 
 `npm start`
