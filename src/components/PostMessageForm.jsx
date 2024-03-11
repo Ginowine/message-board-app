@@ -43,17 +43,17 @@ const PostMessageForm = ({ provider }) => {
         <div>
             {provider ? (
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Message</Form.Label>
-                    <Form.Control as="textarea" rows={3} value={message} onChange={(e) => setMessage(e.target.value)}/>
-                    {isLoading && <p className="processing-text">Processing transaction...</p>}
-                  </Form.Group>
-                  <Button variant="primary" type="submit" disabled={isLoading}>
-                  {isLoading ? 'Posting...' : 'Post Message'}
-                  </Button>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Message</Form.Label>
+                        <Form.Control as="textarea" rows={3} value={message} onChange={(e) => setMessage(e.target.value)} />
+                        {isLoading && <p className="processing-text">Processing transaction...</p>}
+                    </Form.Group>
+                    <Button variant="primary" type="submit" disabled={isLoading}>
+                        {isLoading ? 'Posting...' : 'Post Message'}
+                    </Button>
                 </Form>
 
-                
+
             ) : (
                 <div>
                     <p>Please connect your MetaMask wallet to post messages.</p>

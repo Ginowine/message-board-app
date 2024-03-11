@@ -50,7 +50,7 @@ const App = () => {
       <Row className="justify-content-center" lg={8}>
         <Col>
         <div className="App">
-          <Button className="connect-button" onClick={connectWallet} variant="primary" size="lg">Connect Wallet</Button>
+          <Button className="connect-button" onClick={connectWallet} variant="primary" size="lg">Click to Post Message</Button>
         </div>
         </Col>
       </Row>
