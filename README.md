@@ -9,6 +9,8 @@ Prerequisites
 - Node.js and npm (or yarn) installed on your system.
 - A code editor of your choice (e.g., Visual Studio Code).
 - A MetaMask wallet or similar Ethereum wallet.
+- Add Sepolia Testnet to Metamask
+- Fund Metamask Sepolia with Test Ether
 
 ## Steps
 
