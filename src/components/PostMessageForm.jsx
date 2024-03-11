@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import '../processing-animation.css';
 import contractInfo from '../contractInfo.json';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const PostMessageForm = ({ provider }) => {
     const [message, setMessage] = useState('');
@@ -40,16 +42,18 @@ const PostMessageForm = ({ provider }) => {
     return (
         <div>
             {provider ? (
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Message:
-                        <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
-                    </label>
-                    <button type="submit" disabled={isLoading}>
-                        {isLoading ? 'Posting...' : 'Post Message'}
-                    </button>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Message</Form.Label>
+                    <Form.Control as="textarea" rows={3} value={message} onChange={(e) => setMessage(e.target.value)}/>
                     {isLoading && <p className="processing-text">Processing transaction...</p>}
-                </form>
+                  </Form.Group>
+                  <Button variant="primary" type="submit" disabled={isLoading}>
+                  {isLoading ? 'Posting...' : 'Post Message'}
+                  </Button>
+                </Form>
+
+                
             ) : (
                 <div>
                     <p>Please connect your MetaMask wallet to post messages.</p>
